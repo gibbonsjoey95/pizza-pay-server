@@ -1,5 +1,8 @@
+const Size = require('../models/Size');
+
 const getAllProducts = async (req, res) => {
-  res.json({ msg: 'This will be my API here' });
+  const sizes = await Size.find({});
+  res.status(200).json({ sizes, sizeHits: sizes.length });
 };
 
 module.exports = { getAllProducts };

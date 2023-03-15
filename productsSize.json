@@ -1,0 +1,22 @@
+[
+  {
+    "name": "X-tra Large",
+    "id": 1,
+    "active": false
+  },
+  {
+    "name": "Large",
+    "id": 2,
+    "active": false
+  },
+  {
+    "name": "Medium",
+    "id": 3,
+    "active": false
+  },
+  {
+    "name": "Small",
+    "id": 4,
+    "active": false
+  }
+]
