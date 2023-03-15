@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Pepperoni",
+    "active": false
+  },
+  {
+    "name": "Ham",
+    "active": false
+  },
+  {
+    "name": "Chicken",
+    "active": false
+  },
+  {
+    "name": "Sausage",
+    "active": false
+  },
+  {
+    "name": "Beef",
+    "active": false
+  },
+  {
+    "name": "Bacon",
+    "active": false
+  },
+  {
+    "name": "Steak",
+    "active": false
+  },
+  {
+    "name": "Salami",
+    "active": false
+  }
+]

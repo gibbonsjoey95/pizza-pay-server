@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Original Sauce",
+    "active": true
+  },
+  {
+    "name": "Garlic Sauce",
+    "active": false
+  },
+  {
+    "name": "Honey BBQ",
+    "active": false
+  },
+  {
+    "name": "Hot Buffalo",
+    "active": false
+  },
+  {
+    "name": "Alfredo",
+    "active": false
+  }
+]
