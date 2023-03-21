@@ -7,7 +7,8 @@ const connectDB = require('./db/connect');
 // const Sauce = require('./models/toppings/Sauce');
 // const Cheese = require('./models/toppings/Cheese');
 // const Meat = require('./models/toppings/Meat');
-const Veggie = require('./models/toppings/Veggie');
+// const Veggie = require('./models/toppings/Veggie');
+const Item = require('./models/Item');
 
 // const jsonSize = require('./productsSize.json');
 // const jsonCrust = require('./productsCrust.json');
@@ -15,13 +16,14 @@ const Veggie = require('./models/toppings/Veggie');
 // const jsonSauce = require('./productsSauce.json');
 // const jsonCheese = require('./productsCheese.json');
 // const jsonMeat = require('./productsMeat.json');
-const jsonVeggie = require('./productsVeggie.json');
+// const jsonVeggie = require('./productsVeggie.json');
+const jsonItem = require('./orderItems.json');
 
 const start = async () => {
   try {
     await connectDB(process.env.MONGO_URI);
-    await Veggie.deleteMany();
-    await Veggie.create(jsonVeggie);
+    await Item.deleteMany();
+    await Item.create(jsonItem);
     console.log('Success');
     process.exit(0);
   } catch (error) {

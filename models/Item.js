@@ -18,6 +18,11 @@ const itemSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  toppings: [
+    {
+      name: String,
+    },
+  ],
 });
 
 module.exports = mongoose.model('Item', itemSchema);

@@ -6,6 +6,8 @@ const Cheese = require('../models/toppings/Cheese');
 const Meat = require('../models/toppings/Meat');
 const Veggie = require('../models/toppings/Veggie');
 
+const Item = require('../models/Item');
+
 const getAllProducts = async (req, res) => {
   const sizes = await Size.find({});
   const crusts = await Crust.find({});
@@ -24,10 +26,36 @@ const getAllProducts = async (req, res) => {
     toppingTypes,
     toppings,
   });
-
-  const getAllOrderItems = async (req, res) => {
-    res.json({ msg: 'This will be all of ther order items' });
-  };
 };
 
-module.exports = { getAllProducts, getAllOrderItems };
+const getAllOrderItems = async (req, res) => {
+  const items = await Item.find({});
+
+  const sauces = await Sauce.find({ active: true });
+  const cheeses = await Cheese.find({ active: true });
+
+  const sauceTopping = sauces.map((topping) => {
+    return topping.name;
+  });
+
+  const cheeseTopping = cheeses.map((topping) => {
+    return topping.name;
+  });
+
+  const allToppings = [...sauceTopping, ...cheeseTopping];
+
+  console.log('topping', allToppings);
+
+  res.status(200).json({ items });
+};
+
+const createOrderItem = async (req, res) => {
+  try {
+    const item = await Item.create(req.body);
+    res.status(201).json({ item });
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
+};
+
+module.exports = { getAllProducts, getAllOrderItems, createOrderItem };
