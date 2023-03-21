@@ -7,13 +7,15 @@ const cors = require('cors');
 
 const connectDB = require('./db/connect');
 const productsRouter = require('./routes/products');
+const orderItemRouter = require('./routes/orderItems');
 
 const notFoundMiddleware = require('./middleware/not-found');
 const errorMiddleware = require('./middleware/error-handler');
 
 app.use(express.json());
 app.use(cors());
-app.use('/api/v1', productsRouter);
+app.use('/', productsRouter);
+app.use('/', orderItemRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);

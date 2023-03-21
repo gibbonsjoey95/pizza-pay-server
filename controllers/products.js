@@ -24,6 +24,10 @@ const getAllProducts = async (req, res) => {
     toppingTypes,
     toppings,
   });
+
+  const getAllOrderItems = async (req, res) => {
+    res.json({ msg: 'This will be all of ther order items' });
+  };
 };
 
-module.exports = { getAllProducts };
+module.exports = { getAllProducts, getAllOrderItems };
