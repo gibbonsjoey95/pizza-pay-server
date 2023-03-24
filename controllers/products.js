@@ -28,23 +28,33 @@ const getAllProducts = async (req, res) => {
   });
 };
 
+// const getSizes = async (req, res) => {
+//   const { id: sizeID } = req.params;
+//   const size = await Size.findOne({ _id: sizeID });
+//   if (!size) {
+//     return res.status(404).json({ success: false, msg: 'Not Found' });
+//   }
+
+//   res.status(200).json({ size });
+// };
+
 const getAllOrderItems = async (req, res) => {
   const items = await Item.find({});
 
-  const sauces = await Sauce.find({ active: true });
-  const cheeses = await Cheese.find({ active: true });
+  // const sauces = await Sauce.find({ active: true });
+  // const cheeses = await Cheese.find({ active: true });
 
-  const sauceTopping = sauces.map((topping) => {
-    return topping.name;
-  });
+  // const sauceTopping = sauces.map((topping) => {
+  //   return topping.name;
+  // });
 
-  const cheeseTopping = cheeses.map((topping) => {
-    return topping.name;
-  });
+  // const cheeseTopping = cheeses.map((topping) => {
+  //   return topping.name;
+  // });
 
-  const allToppings = [...sauceTopping, ...cheeseTopping];
+  // const allToppings = [...sauceTopping, ...cheeseTopping];
 
-  console.log('topping', allToppings);
+  // console.log('topping', allToppings);
 
   res.status(200).json({ items });
 };
@@ -58,4 +68,48 @@ const createOrderItem = async (req, res) => {
   }
 };
 
-module.exports = { getAllProducts, getAllOrderItems, createOrderItem };
+const getOrderItem = async (req, res) => {
+  const { id: itemID } = req.params;
+  const item = await Item.findOne({ _id: itemID });
+  if (!item) {
+    return res.status(404).json({ success: false, msg: 'Not Found' });
+  }
+
+  res.status(200).json({ item });
+};
+
+const deleteItem = async (req, res, next) => {
+  const { id: itemID } = req.params;
+  const item = await Item.findOneAndDelete({ _id: itemID });
+
+  if (!item) {
+    return res.status(404).json({ success: false, msg: 'Not Found' });
+  }
+
+  res.status(200).json({ item });
+};
+
+const updateItem = async (req, res) => {
+  const { id: itemID } = req.params;
+
+  const item = await Item.findByIdAndUpdate({ _id: itemID }, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!item) {
+    return res.status(404).json({ success: false, msg: 'Not Found' });
+  }
+
+  res.status(200).json({ item });
+};
+
+module.exports = {
+  getAllProducts,
+  // getSizes,
+  getAllOrderItems,
+  createOrderItem,
+  getOrderItem,
+  deleteItem,
+  updateItem,
+};
