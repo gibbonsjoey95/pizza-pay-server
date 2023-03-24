@@ -62,7 +62,10 @@ const getAllOrderItems = async (req, res) => {
 const createOrderItem = async (req, res) => {
   try {
     const item = await Item.create(req.body);
-    res.status(201).json({ item });
+    if (item) {
+      console.log('req.body', req.body);
+      res.status(201).json({ item });
+    }
   } catch (error) {
     res.status(500).json({ msg: error });
   }
