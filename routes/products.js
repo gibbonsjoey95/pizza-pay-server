@@ -7,7 +7,7 @@ const {
   getAllOrderItems,
   createOrderItem,
   getOrderItem,
-  deleteItem,
+  deleteOrderItem,
   updateItem,
 } = require('../controllers/products');
 
@@ -18,6 +18,6 @@ router
   .route('/api/items/:id')
   .get(getOrderItem)
   .patch(updateItem)
-  .delete(deleteItem);
+  .delete(deleteOrderItem);
 
 module.exports = router;

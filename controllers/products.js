@@ -81,7 +81,7 @@ const getOrderItem = async (req, res) => {
   res.status(200).json({ item });
 };
 
-const deleteItem = async (req, res, next) => {
+const deleteOrderItem = async (req, res, next) => {
   const { id: itemID } = req.params;
   const item = await Item.findOneAndDelete({ _id: itemID });
 
@@ -113,6 +113,6 @@ module.exports = {
   getAllOrderItems,
   createOrderItem,
   getOrderItem,
-  deleteItem,
+  deleteOrderItem,
   updateItem,
 };
