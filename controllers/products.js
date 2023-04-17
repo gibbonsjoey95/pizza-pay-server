@@ -28,6 +28,57 @@ const getAllProducts = async (req, res) => {
   });
 };
 
+// will delete these when closer to finished product
+const getSingleSauce = async (req, res) => {
+  const { id: productID } = req.params;
+  const product = await Sauce.findOne({ _id: productID });
+  if (!product) {
+    return res.status(404).json({ success: false, msg: 'Not Found' });
+  }
+
+  res.status(200).json({ product });
+};
+
+const updateProductSauce = async (req, res) => {
+  const { id: productID } = req.params;
+
+  const product = await Sauce.findByIdAndUpdate({ _id: productID }, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!product) {
+    return res.status(404).json({ success: false, msg: 'Not Found' });
+  }
+
+  res.status(200).json({ product });
+};
+
+const getSingleCheese = async (req, res) => {
+  const { id: productID } = req.params;
+  const product = await Cheese.findOne({ _id: productID });
+  if (!product) {
+    return res.status(404).json({ success: false, msg: 'Not Found' });
+  }
+
+  res.status(200).json({ product });
+};
+
+const updateProductCheese = async (req, res) => {
+  const { id: productID } = req.params;
+
+  const product = await Cheese.findByIdAndUpdate({ _id: productID }, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!product) {
+    return res.status(404).json({ success: false, msg: 'Not Found' });
+  }
+
+  res.status(200).json({ product });
+};
+
 // const getSizes = async (req, res) => {
 //   const { id: sizeID } = req.params;
 //   const size = await Size.findOne({ _id: sizeID });
@@ -38,6 +89,7 @@ const getAllProducts = async (req, res) => {
 //   res.status(200).json({ size });
 // };
 
+// what is going on here?
 const getAllOrderItems = async (req, res) => {
   const items = await Item.find({});
 
@@ -109,7 +161,10 @@ const updateItem = async (req, res) => {
 
 module.exports = {
   getAllProducts,
-  // getSizes,
+  getSingleSauce,
+  updateProductSauce,
+  getSingleCheese,
+  updateProductCheese,
   getAllOrderItems,
   createOrderItem,
   getOrderItem,

@@ -3,7 +3,10 @@ const router = express.Router();
 
 const {
   getAllProducts,
-  // getSizes,
+  getSingleSauce,
+  updateProductSauce,
+  getSingleCheese,
+  updateProductCheese,
   getAllOrderItems,
   createOrderItem,
   getOrderItem,
@@ -12,7 +15,14 @@ const {
 } = require('../controllers/products');
 
 router.route('/api/products').get(getAllProducts);
-// router.route('/api/products/sizes/:id').get(getSizes);
+router
+  .route('/api/products/sauce/:id')
+  .get(getSingleSauce)
+  .patch(updateProductSauce);
+router
+  .route('/api/products/cheese/:id')
+  .get(getSingleCheese)
+  .patch(updateProductCheese);
 router.route('/api/items').get(getAllOrderItems).post(createOrderItem);
 router
   .route('/api/items/:id')
